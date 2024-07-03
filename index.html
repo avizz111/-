@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carro de compras</title>
+    <link rel="stylesheet" href="src/css/all.min.css">
+    <link rel="icon" type="icon/png" href="https://cdn-icons-png.flaticon.com/512/3406/3406954.png">
+    <style>
+        body {
+            background: #101010;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        img {
+            filter: drop-shadow(0 0 2px #fff);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            transition: all 2s;
+        }
+
+        #hd-fig {
+            width: 100vw;
+            height: 40vh;
+            background-image: url(https://www.smashbros.com/assets_v2/img/stage/stage_img53.jpg);
+            background-position: 50% 10%;
+            background-size: contain;
+            background-position: 0 100%;
+        }
+
+        @font-face {
+            font-family: personal;
+            src: url(src/CasualCursive-Regular.ttf);
+        }
+
+        #nv-ul {
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+            position: relative;
+            height: 8vh;
+            font-size: 4vmin;
+            width: 70vw;
+        }
+
+        .nv-i {
+            font-size: 5vmin;
+            color: #a1a1a1;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        .nv-span {
+            color: #f1f1f1;
+        }
+
+        nav {
+            display: flex;
+            background: #1a1a1a;
+            height: 8vh;
+            justify-content: space-between;
+            padding-top: 4%;
+            padding: 4% 20px 0 20px;
+            margin-bottom: 20px;
+        }
+
+        .cl-img {
+            width: 40vw;
+        }
+
+        .mn-art {
+            background: #222;
+            display: inline-table;
+            width: 30vw;
+            height: auto;
+            margin: 1vw;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .mn-art>figure>img {
+            width: 20vw;
+            margin: 0 25%;
+        }
+
+        .mn-art>figure {
+            width: 20vw;
+            height: 20vw;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-bottom: 10px;
+            background: inherit;
+            border: none;
+            padding: 5px;
+            border-radius: 5px;
+            height: min-content;
+        }
+
+        #carrito {
+            display: none;
+            width: 90vw;
+            height: max-content;
+            border-radius: 20px;
+            margin: auto;
+            left: 0;
+            background: #222;
+            padding: 1vmax;
+        }
+
+        #mostrar_articulo_1,
+        #mostrar_articulo_2,
+        #mostrar_articulo_3,
+        #mostrar_articulo_4,
+        #mostrar_articulo_5,
+        #mostrar_articulo_6,
+        #mostrar_articulo_7,
+        #mostrar_articulo_8,
+        #mostrar_articulo_9 {
+            display: none;
+            width: 90vw;
+            height: max-content;
+            border-radius: 20px;
+            margin: auto;
+            left: 0;
+            background: #222;
+            padding: 1vmax;
+            margin-bottom: 2vmin;
+        }
+
+        #listado_1,
+        #listado_2,
+        #listado_3,
+        #listado_4,
+        #listado_5,
+        #listado_6,
+        #listado_7,
+        #listado_8,
+        #listado_9{
+            display: none;
+        }
+
+        .producto_ejemplo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .producto_ejemplo>figure,
+        .producto_ejemplo>figure>img {
+            width: 20vw;
+        }
+
+        #principal {
+            display: block;
+        }
+
+        .carro {
+            margin-top: 10px;
+            background: #575757;
+        }
+
+        #carrito>div>img {
+            width: 20vw;
+        }
+
+        #carrito>div>h2,
+        #carrito>div>button {
+            font-size: 2em;
+        }
+
+        #carrito>div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #comprar{
+            text-align: center;
+        }
+        #comprar>button{
+            border: 2px solid #000;
+            border: 10px;
+            background: #575757;
+            display: block;
+            width: min-content;
+            margin: auto;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <figure id="hd-fig"></figure>
+    </header>
+    <nav>
+        <i class="fa-brands fa-galactic-senate nv-i" onclick="mostrar_principal()"></i>
+        <i class="fa-solid fa-cart-shopping nv-i" onclick="mostrar_carro()"></i>
+    </nav>
+    <main>
+        <section id="principal">
+            <article class="mn-art" id="articulo1">
+                <h2>Bocina</h2>
+                <h3>LP</h3>
+                <figure>
+                    <img src="https://cdn.shopify.com/s/files/1/0276/2473/4804/products/L100foam_1024x1024.png?v=1588182486"
+                        alt="">
+                </figure>
+                <h3>$450</h3>
+                <button class="carro" onclick="agregar(1)">Agregar al carrito</button><br>
+                <button class="ver" onclick="articulo1_seleccionado()">ver más</button>
+            </article>
+            <article class="mn-art" id="articulo2">
+                <h2>Teclado</h2>
+                <h3>LP</h3>
+                <figure>
+                    <img src="https://power-play.cl/wp-content/uploads/2022/06/TECLADO-MECANICO-PANTHER-PM-615-NEGRO-RGB-SWITCH-AZUL-61-KEYS-13.png"
+                        alt="">
+                </figure>
+                <h3>$1500</h3>
+                <button class="carro" onclick="agregar(2)">Agregar al carrito</button><br>
+                <button class="ver" onclick="articulo2_seleccionado()">ver más</button>
+            </article>
+            <article class="mn-art" id="articulo3">
+                <h2>Mouse</h2>
+                <h3>LP</h3>
+                <figure>
+                    <img src="https://power-play.cl/wp-content/uploads/2023/07/transparente-4.png" alt="">
+                </figure>
+                <h3>$300</h3>
+                <button class="carro" onclick="agregar(3)">Agregar al carrito</button><br>
+                <button class="ver" onclick="articulo3_seleccionado()">ver más</button>
+            </article>
+            <article class="mn-art" id="articulo4">
+                <h2>Teclado</h2>
+                <h3>Toshiba</h3>
+                <figure>
+                    <img src="https://th.bing.com/th/id/R.29f80fb878a5fc5b5f120eaab12eecb9?rik=wwsXqpi%2b6gCU2Q&pid=ImgRaw&r=0"
+                        alt="">
+                </figure>
+                <h3>$350</h3>
+                <button class="carro" onclick="agregar(4)">Agregar al carrito</button><br>
+                <button class="ver" onclick="articulo4_seleccionado()">ver más</button>
+            </article>
+            <article class="mn-art" id="articulo5">
+                <h2>Mouse</h2>
+                <h3>Toshiba</h3>
+                <figure>
+                    <img src="https://dojiw2m9tvv09.cloudfront.net/48881/product/L_ch-9302211-na1681.png?71" alt="">
+                </figure>
+                <h3>$300</h3>
+                <button class="carro" onclick="agregar(5)">Agregar al carrito</button><br>
+                <button class="ver" onclick="articulo5_seleccionado()">ver más</button>
+            </article>
+            <article class="mn-art" id="articulo6">
+                <h2>Bocina</h2>
+                <h3>Toshiba</h3>
+                <figure>
+                    <img src="https://th.bing.com/th/id/R.dc92ac9143c6118fa5be7486cf9654e1?rik=6Uh6AOPPUlYJ3A&pid=ImgRaw&r=0"
+                        alt="">
+                </figure>
+                <h3>$550</h3>
+                <button class="carro" onclick="agregar(6)">Agregar al carrito</button><br>
+                <button class="ver" onclick="articulo6_seleccionado()">ver más</button>
+            </article>
+            <article class="mn-art" id="articulo7">
+                <h2>Mouse</h2>
+                <h3>Huawei</h3>
+                <figure>
+                    <img src="https://th.bing.com/th/id/R.bbaa1ce084c2d5d6926bb66dc251d643?rik=DpOVtJSfaprHHw&pid=ImgRaw&r=0"
+                        alt="">
+                </figure>
+                <h3>$250</h3>
+                <button class="carro" onclick="agregar(7)">Agregar al carrito</button><br>
+                <button class="ver" onclick="articulo7_seleccionado()">ver más</button>
+            </article>
+            <article class="mn-art" id="articulo8">
+                <h2>Teclado</h2>
+                <h3>Huawei</h3>
+                <figure>
+                    <img src="https://th.bing.com/th/id/R.fb2e0143d8ccc26b8c18994e3756d192?rik=jA25l3X2I0YrOA&pid=ImgRaw&r=0"
+                        alt="">
+                </figure>
+                <h3>$150</h3>
+                <button class="carro" onclick="agregar(8)">Agregar al carrito</button><br>
+                <button class="ver" onclick="articulo8_seleccionado()">ver más</button>
+            </article>
+            <article class="mn-art" id="articulo9">
+                <h2>Bocina</h2>
+                <h3>Huawei</h3>
+                <figure>
+                    <img src="https://th.bing.com/th/id/R.5e7def57e7969013bc20e1e8f42f7a07?rik=DK0HDFrCTyt3RA&pid=ImgRaw&r=0"
+                        alt="">
+                </figure>
+                <h3>$200</h3>
+                <button class="carro" onclick="agregar(9)">Agregar al carrito</button><br>
+                <button class="ver" onclick="articulo9_seleccionado()">ver más</button>
+            </article>
+        </section>
+        <!--Mostrar cada articulo-->
+        <section id="mostrar_articulo_1">
+            <h2>Bocina</h2>
+            <h3>LP</h3>
+            <div class="producto_ejemplo">
+                <figure>
+                    <img src="https://cdn.shopify.com/s/files/1/0276/2473/4804/products/L100foam_1024x1024.png?v=1588182486"
+                        alt="">
+                </figure>
+                <h3>$450</h3>
+                <button class="carro" onclick="agregar(1)">Agregar al carrito</button><br>
+            </div>
+        </section>
+        <section id="mostrar_articulo_2">
+            <h2>Teclado</h2>
+            <h3>LP</h3>
+            <div class="producto_ejemplo">
+                <figure>
+                    <img src="https://power-play.cl/wp-content/uploads/2022/06/TECLADO-MECANICO-PANTHER-PM-615-NEGRO-RGB-SWITCH-AZUL-61-KEYS-13.png"
+                        alt="">
+                </figure>
+                <h3>$1500</h3>
+                <button class="carro" onclick="agregar(2)">Agregar al carrito</button><br>
+            </div>
+        </section>
+        <section id="mostrar_articulo_3">
+            <h2>Mouse</h2>
+            <h3>LP</h3>
+            <div class="producto_ejemplo">
+                <figure>
+                    <img src="https://power-play.cl/wp-content/uploads/2023/07/transparente-4.png" alt="">
+                </figure>
+                <h3>$300</h3>
+                <button class="carro" onclick="agregar(3)">Agregar al carrito</button><br>
+            </div>
+        </section>
+        <section id="mostrar_articulo_4">
+            <h2>Teclado</h2>
+            <h3>Toshiba</h3>
+            <div class="producto_ejemplo">
+                <figure>
+                    <img src="https://th.bing.com/th/id/R.29f80fb878a5fc5b5f120eaab12eecb9?rik=wwsXqpi%2b6gCU2Q&pid=ImgRaw&r=0"
+                        alt="">
+                </figure>
+                <h3>$350</h3>
+                <button class="carro" onclick="agregar(4)">Agregar al carrito</button><br>
+            </div>
+        </section>
+        <section id="mostrar_articulo_5">
+            <h2>Mouse</h2>
+            <h3>Toshiba</h3>
+            <div class="producto_ejemplo">
+                <figure>
+                    <img src="https://dojiw2m9tvv09.cloudfront.net/48881/product/L_ch-9302211-na1681.png?71" alt="">
+                </figure>
+                <h3>$300</h3>
+                <button class="carro" onclick="agregar(5)">Agregar al carrito</button><br>
+            </div>
+        </section>
+        <section id="mostrar_articulo_6">
+            <h2>Bocina</h2>
+            <h3>Toshiba</h3>
+            <div class="producto_ejemplo">
+                <figure>
+                    <img src="https://th.bing.com/th/id/R.dc92ac9143c6118fa5be7486cf9654e1?rik=6Uh6AOPPUlYJ3A&pid=ImgRaw&r=0"
+                        alt="">
+                </figure>
+                <h3>$550</h3>
+                <button class="carro" onclick="agregar(6)">Agregar al carrito</button><br>
+            </div>
+        </section>
+        <section id="mostrar_articulo_7">
+            <h2>Mouse</h2>
+            <h3>Huawei</h3>
+            <div class="producto_ejemplo">
+                <figure>
+                    <img src="https://th.bing.com/th/id/R.bbaa1ce084c2d5d6926bb66dc251d643?rik=DpOVtJSfaprHHw&pid=ImgRaw&r=0"
+                        alt="">
+                </figure>
+                <h3>$250</h3>
+                <button class="carro" onclick="agregar(7)">Agregar al carrito</button><br>
+            </div>
+        </section>
+        <section id="mostrar_articulo_8">
+            <h2>Teclado</h2>
+            <h3>Huawei</h3>
+            <div class="producto_ejemplo">
+                <figure>
+                    <img src="https://th.bing.com/th/id/R.fb2e0143d8ccc26b8c18994e3756d192?rik=jA25l3X2I0YrOA&pid=ImgRaw&r=0"
+                        alt="">
+                </figure>
+                <h3>$150</h3>
+                <button class="carro" onclick="agregar(8)">Agregar al carrito</button><br>
+            </div>
+        </section>
+        <section id="mostrar_articulo_9">
+            <h2>Bocina</h2>
+            <h3>Huawei</h3>
+            <div class="producto_ejemplo">
+                <figure>
+                    <img src="https://th.bing.com/th/id/R.5e7def57e7969013bc20e1e8f42f7a07?rik=DK0HDFrCTyt3RA&pid=ImgRaw&r=0"
+                        alt="">
+                </figure>
+                <h3>$200</h3>
+                <button class="carro" onclick="agregar(9)">Agregar al carrito</button><br>
+            </div>
+        </section>
+        <!--Carro-->
+        <section id="carrito">
+            <div id="listado_1">
+                <img src="https://cdn.shopify.com/s/files/1/0276/2473/4804/products/L100foam_1024x1024.png?v=1588182486"
+                    alt="">
+                <h2 id="titulo_1"></h2>
+                <h2 id="marca_1"></h2>
+                <h2 id="precio_1"></h2>
+                <button onclick="restar(1)">
+                    <</button>
+                        <p id="cantidad_producto_1"></p>
+                        <button onclick="agregar(1)">></button>
+            </div>
+            <div id="listado_2">
+                <img src="https://power-play.cl/wp-content/uploads/2022/06/TECLADO-MECANICO-PANTHER-PM-615-NEGRO-RGB-SWITCH-AZUL-61-KEYS-13.png"
+                    alt="">
+                <h2 id="titulo_2"></h2>
+                <h2 id="marca_2"></h2>
+                <h2 id="precio_2"></h2>
+                <button onclick="restar(2)">
+                    <</button>
+                        <p id="cantidad_producto_2"></p>
+                        <button onclick="agregar(2)">></button>
+            </div>
+            <div id="listado_3">
+                <img src="https://power-play.cl/wp-content/uploads/2023/07/transparente-4.png" alt="">
+                <h2 id="titulo_3"></h2>
+                <h2 id="marca_3"></h2>
+                <h2 id="precio_3"></h2>
+                <button onclick="restar(3)">
+                    <</button>
+                        <p id="cantidad_producto_3"></p>
+                        <button onclick="agregar(3)">></button>
+            </div>
+            <div id="listado_4">
+                <img src="https://th.bing.com/th/id/R.29f80fb878a5fc5b5f120eaab12eecb9?rik=wwsXqpi%2b6gCU2Q&pid=ImgRaw&r=0"
+                    alt="">
+                <h2 id="titulo_4"></h2>
+                <h2 id="marca_4"></h2>
+                <h2 id="precio_4"></h2>
+                <button onclick="restar(4)">
+                    <</button>
+                        <p id="cantidad_producto_4"></p>
+                        <button onclick="agregar(4)">></button>
+            </div>
+            <div id="listado_5">
+                <img src="https://dojiw2m9tvv09.cloudfront.net/48881/product/L_ch-9302211-na1681.png?71" alt="">
+                <h2 id="titulo_5"></h2>
+                <h2 id="marca_5"></h2>
+                <h2 id="precio_5"></h2>
+                <button onclick="restar(5)">
+                    <</button>
+                        <p id="cantidad_producto_5"></p>
+                        <button onclick="agregar(5)">></button>
+            </div>
+            <div id="listado_6">
+                <img src="https://th.bing.com/th/id/R.dc92ac9143c6118fa5be7486cf9654e1?rik=6Uh6AOPPUlYJ3A&pid=ImgRaw&r=0"
+                    alt="">
+                <h2 id="titulo_6"></h2>
+                <h2 id="marca_6"></h2>
+                <h2 id="precio_6"></h2>
+                <button onclick="restar(6)">
+                    <</button>
+                        <p id="cantidad_producto_6"></p>
+                        <button onclick="agregar(6)">></button>
+            </div>
+            <div id="listado_7">
+                <img src="https://th.bing.com/th/id/R.bbaa1ce084c2d5d6926bb66dc251d643?rik=DpOVtJSfaprHHw&pid=ImgRaw&r=0"
+                    alt="">
+                <h2 id="titulo_7"></h2>
+                <h2 id="marca_7"></h2>
+                <h2 id="precio_7"></h2>
+                <button onclick="restar(7)">
+                    <</button>
+                        <p id="cantidad_producto_7"></p>
+                        <button onclick="agregar(7)">></button>
+            </div>
+            <div id="listado_8">
+                <img src="https://th.bing.com/th/id/R.fb2e0143d8ccc26b8c18994e3756d192?rik=jA25l3X2I0YrOA&pid=ImgRaw&r=0"
+                    alt="">
+                <h2 id="titulo_8"></h2>
+                <h2 id="marca_8"></h2>
+                <h2 id="precio_8"></h2>
+                <button onclick="restar(8)">
+                    <</button>
+                        <p id="cantidad_producto_8"></p>
+                        <button onclick="agregar(8)">></button>
+            </div>
+            <div id="listado_9">
+                <img src="https://th.bing.com/th/id/R.5e7def57e7969013bc20e1e8f42f7a07?rik=DK0HDFrCTyt3RA&pid=ImgRaw&r=0"
+                    alt="">
+                <h2 id="titulo_9"></h2>
+                <h2 id="marca_9"></h2>
+                <h2 id="precio_9"></h2>
+                <button onclick="restar(9)">
+                    <</button>
+                    <p id="cantidad_producto_9"></p>
+                    <button onclick="agregar(9)">></button>
+            </div>
+            <div id="comprar">
+                <h2 id="precio"></h2>
+                <button onclick="comprar()" id="button_comprar">comprar</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        //obtener cada articulo
+        mostrar_articulo_1 = document.getElementById('mostrar_articulo_1')
+        mostrar_articulo_2 = document.getElementById('mostrar_articulo_2')
+        mostrar_articulo_3 = document.getElementById('mostrar_articulo_3')
+        mostrar_articulo_4 = document.getElementById('mostrar_articulo_4')
+        mostrar_articulo_5 = document.getElementById('mostrar_articulo_5')
+        mostrar_articulo_6 = document.getElementById('mostrar_articulo_6')
+        mostrar_articulo_7 = document.getElementById('mostrar_articulo_7')
+        mostrar_articulo_8 = document.getElementById('mostrar_articulo_8')
+        mostrar_articulo_9 = document.getElementById('mostrar_articulo_9')
+        carrito = document.getElementById('carrito')
+        principal = document.getElementById('principal')
+        cuadro_de_carrito = document.getElementById('cuadro_de_carrito')
+
+        function cambiar_cantidad_9(cantidad_a_cambiar) {
+            cantidad_producto_9.innerHTML = cantidad_a_cambiar
+        }
+
+        precio= document.getElementById("precio")
+
+        var valor_final = 0
+
+        //cantidad_producto
+        var cantidad_1 = 0
+        var cantidad_2 = 0
+        var cantidad_3 = 0
+        var cantidad_4 = 0
+        var cantidad_5 = 0
+        var cantidad_6 = 0
+        var cantidad_7 = 0
+        var cantidad_8 = 0
+        var cantidad_9 = 0
+
+        //listado de cantidad
+        var cantidad_producto_1 = document.getElementById("cantidad_producto_1")
+
+        //lista de productos
+        var lista_producto_1 = ["Bocina", "LP", 450, cantidad_1]
+        var lista_producto_2 = ["Teclado", "LP", 1500, cantidad_2]
+        var lista_producto_3 = ["Mouse", "LP", 300, cantidad_3]
+        var lista_producto_4 = ["Teclado", "Toshiba", 350, cantidad_4]
+        var lista_producto_5 = ["Mouse", "Toshiba", 300, cantidad_5]
+        var lista_producto_6 = ["Bocina", "Toshiba", 550, cantidad_6]
+        var lista_producto_7 = ["Mouse", "Huawei", 250, cantidad_7]
+        var lista_producto_8 = ["Teclado", "Huawei", 150, cantidad_8]
+        var lista_producto_9 = ["Bocina", "Huawei", 200, cantidad_9]
+
+        //comprar
+        const comprar = () => {
+            lista_producto_1[3] = 0
+            lista_producto_2[3] = 0
+            lista_producto_3[3] = 0
+            lista_producto_4[3] = 0
+            lista_producto_5[3] = 0
+            lista_producto_6[3] = 0
+            lista_producto_7[3] = 0
+            lista_producto_8[3] = 0
+            lista_producto_9[3] = 0
+            alert("compra realizada con éxito")
+            verificar()
+        }
+
+        //agregar a la lista
+        const agregar = (numero_agregado) => {
+            if (numero_agregado == 1) {
+                lista_producto_1[3] = lista_producto_1[3] + 1
+                cantidad_producto_1.innerText = lista_producto_1[3]
+                verificar()
+            }
+            if (numero_agregado == 2) {
+                lista_producto_2[3] = lista_producto_2[3] + 1
+                cantidad_producto_2.innerText = lista_producto_2[3]
+                verificar()
+            }
+            if (numero_agregado == 3) {
+                lista_producto_3[3] = lista_producto_3[3] + 1
+                cantidad_producto_3.innerText = lista_producto_3[3]
+                verificar()
+            }
+            if (numero_agregado == 4) {
+                lista_producto_4[3] = lista_producto_4[3] + 1
+                cantidad_producto_4.innerText = lista_producto_4[3]
+                verificar()
+            }
+            if (numero_agregado == 5) {
+                lista_producto_5[3] = lista_producto_5[3] + 1
+                cantidad_producto_5.innerText = lista_producto_5[3]
+                verificar()
+            }
+            if (numero_agregado == 6) {
+                lista_producto_6[3] = lista_producto_6[3] + 1
+                cantidad_producto_6.innerText = lista_producto_6[3]
+                verificar()
+            }
+            if (numero_agregado == 7) {
+                lista_producto_7[3] = lista_producto_7[3] + 1
+                cantidad_producto_7.innerText = lista_producto_7[3]
+                verificar()
+            }
+            if (numero_agregado == 8) {
+                lista_producto_8[3] = lista_producto_8[3] + 1
+                cantidad_producto_8.innerText = lista_producto_8[3]
+                verificar()
+            }
+            if (numero_agregado == 9) {
+                lista_producto_9[3] = lista_producto_9[3] + 1
+                cantidad_producto_9.innerText = lista_producto_9[3]
+                verificar()
+            }
+        }
+        //quitar a la lista
+        const restar = (numero_quitado) => {
+            if (numero_quitado == 1) {
+                lista_producto_1[3] = lista_producto_1[3] - 1
+                cantidad_producto_1.innerText = lista_producto_1[3]
+                verificar()
+            }
+            if (numero_quitado == 2) {
+                lista_producto_2[3] = lista_producto_2[3] - 1
+                cantidad_producto_2.innerText = lista_producto_2[3]
+                verificar()
+            }
+            if (numero_quitado == 3) {
+                lista_producto_3[3] = lista_producto_3[3] - 1
+                cantidad_producto_3.innerText = lista_producto_3[3]
+                verificar()
+            }
+            if (numero_quitado == 4) {
+                lista_producto_4[3] = lista_producto_4[3] - 1
+                cantidad_producto_4.innerText = lista_producto_4[3]
+                verificar()
+            }
+            if (numero_quitado == 5) {
+                lista_producto_5[3] = lista_producto_5[3] - 1
+                cantidad_producto_5.innerText = lista_producto_5[3]
+                verificar()
+            }
+            if (numero_quitado == 6) {
+                lista_producto_6[3] = lista_producto_6[3] - 1
+                cantidad_producto_6.innerText = lista_producto_6[3]
+                verificar()
+            }
+            if (numero_quitado == 7) {
+                lista_producto_7[3] = lista_producto_7[3] - 1
+                cantidad_producto_7.innerText = lista_producto_7[3]
+                verificar()
+            }
+            if (numero_quitado == 8) {
+                lista_producto_8[3] = lista_producto_8[3] - 1
+                cantidad_producto_8.innerText = lista_producto_8[3]
+                verificar()
+            }
+            if (numero_quitado == 9) {
+                lista_producto_9[3] = lista_producto_9[3] - 1
+                cantidad_producto_9.innerText = lista_producto_9[3]
+                verificar()
+            }
+        }
+
+        //mostrar carro
+        const mostrar_carro = () => {
+            carrito.style.display = 'block'
+            principal.style.display = 'none'
+            mostrar_articulo_1.style.display = 'none'
+            mostrar_articulo_2.style.display = 'none'
+            mostrar_articulo_3.style.display = 'none'
+            mostrar_articulo_4.style.display = 'none'
+            mostrar_articulo_5.style.display = 'none'
+            mostrar_articulo_6.style.display = 'none'
+            mostrar_articulo_7.style.display = 'none'
+            mostrar_articulo_8.style.display = 'none'
+            mostrar_articulo_9.style.display = 'none'
+            verificar()
+        }
+        const verificar = () => {
+            if (lista_producto_1[3] <= 0) {
+                listado_1.style.display = 'none'
+            } else {
+                listado_1.style.display = 'flex'
+            }
+            if (lista_producto_2[3] <= 0) {
+                listado_2.style.display = 'none'
+            } else {
+                listado_2.style.display = 'flex'
+            }
+            if (lista_producto_3[3] <= 0) {
+                listado_3.style.display = 'none'
+            } else {
+                listado_3.style.display = 'flex'
+            }
+            if (lista_producto_4[3] <= 0) {
+                listado_4.style.display = 'none'
+            } else {
+                listado_4.style.display = 'flex'
+            }
+            if (lista_producto_5[3] <= 0) {
+                listado_5.style.display = 'none'
+            } else {
+                listado_5.style.display = 'flex'
+            }
+            if (lista_producto_6[3] <= 0) {
+                listado_6.style.display = 'none'
+            } else {
+                listado_6.style.display = 'flex'
+            }
+            if (lista_producto_7[3] <= 0) {
+                listado_7.style.display = 'none'
+            } else {
+                listado_7.style.display = 'flex'
+            }
+            if (lista_producto_8[3] <= 0) {
+                listado_8.style.display = 'none'
+            } else {
+                listado_8.style.display = 'flex'
+            }
+            if (lista_producto_9[3] <= 0) {
+                listado_9.style.display = 'none'
+            } else {
+                listado_9.style.display = 'flex'
+            }
+        }
+        const mostrar_principal = () => {
+            carrito.style.display = 'none'
+            principal.style.display = 'block'
+            mostrar_articulo_1.style.display = 'none'
+            mostrar_articulo_2.style.display = 'none'
+            mostrar_articulo_3.style.display = 'none'
+            mostrar_articulo_4.style.display = 'none'
+            mostrar_articulo_5.style.display = 'none'
+            mostrar_articulo_6.style.display = 'none'
+            mostrar_articulo_7.style.display = 'none'
+            mostrar_articulo_8.style.display = 'none'
+            mostrar_articulo_9.style.display = 'none'
+        }
+        const articulo1_seleccionado = () => {
+            principal.style.display = 'none'
+            carrito.style.display = 'none'
+            mostrar_articulo_1.style.display = 'block'
+        }
+        const articulo2_seleccionado = () => {
+            principal.style.display = 'none'
+            carrito.style.display = 'none'
+            mostrar_articulo_2.style.display = 'block'
+        }
+        const articulo3_seleccionado = () => {
+            principal.style.display = 'none'
+            carrito.style.display = 'none'
+            mostrar_articulo_3.style.display = 'block'
+        }
+        const articulo4_seleccionado = () => {
+            principal.style.display = 'none'
+            carrito.style.display = 'none'
+            mostrar_articulo_4.style.display = 'block'
+        }
+        const articulo5_seleccionado = () => {
+            principal.style.display = 'none'
+            carrito.style.display = 'none'
+            mostrar_articulo_5.style.display = 'block'
+        }
+        const articulo6_seleccionado = () => {
+            principal.style.display = 'none'
+            carrito.style.display = 'none'
+            mostrar_articulo_6.style.display = 'block'
+        }
+        const articulo7_seleccionado = () => {
+            principal.style.display = 'none'
+            carrito.style.display = 'none'
+            mostrar_articulo_7.style.display = 'block'
+        }
+        const articulo8_seleccionado = () => {
+            principal.style.display = 'none'
+            carrito.style.display = 'none'
+            mostrar_articulo_8.style.display = 'block'
+        }
+        const articulo9_seleccionado = () => {
+            principal.style.display = 'none'
+            carrito.style.display = 'none'
+            mostrar_articulo_9.style.display = 'block'
+        }
+
+    </script>
+</body>
+
+</html>
